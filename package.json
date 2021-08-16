@@ -1,0 +1,26 @@
+{
+  "name": "rdb-queue-consumer",
+  "version": "1.0.0",
+  "description": "A small POC for a RDB queuing system consumer.",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "insert": "ts-node src/insert.ts"
+  },
+  "keywords": [],
+  "author": "Daniel Henkel <daniel@henkel.tech>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/config": "0.0.37",
+    "@types/mysql": "2.15.15",
+    "@types/node": "14.14.9",
+    "@types/uuid": "8.3.0",
+    "ts-node": "9.0.0",
+    "typescript": "4.1.2"
+  },
+  "dependencies": {
+    "config": "3.3.2",
+    "js-yaml": "3.14.0",
+    "mysql": "2.18.1",
+    "uuid": "8.3.1"
+  }
+}

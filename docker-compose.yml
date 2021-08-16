@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  mysql:
+    container_name: queue_mysql
+    image: mysql:5.7.29
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: queue
+      MYSQL_ROOT_PASSWORD: root
+  inserter:
+    container_name: queue_inserter
+    build: .
+    restart: always
+    command: ["npm", "run", "insert"]
+    links:
+      - mysql:mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: queue
+  consumer1:
+    container_name: queue_consumer1
+    build: .
+    restart: always
+    links:
+      - mysql:mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: queue
+  consumer2:
+    container_name: queue_consumer2
+    build: .
+    restart: always
+    links:
+      - mysql:mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: queue
